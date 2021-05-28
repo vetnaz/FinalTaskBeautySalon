@@ -20,7 +20,7 @@ public class RecordPageCommand extends Command {
     private static final Logger log = Logger.getLogger(RecordPageCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start RecordPageCommand");
 
         List<String> services = new ServiceDAO().findServicesTitle();
@@ -37,7 +37,7 @@ public class RecordPageCommand extends Command {
 
         request.setAttribute("currentDate",LocalDate.now().toString());
 
-        return Path.CREATE_RECORD_PATH;
+        request.getRequestDispatcher(Path.CREATE_RECORD_PATH).forward(request,response);
     }
 
 

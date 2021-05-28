@@ -21,7 +21,7 @@ public class MainPageCommand extends Command {
     Logger log = Logger.getLogger(MainPageCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start MainPageCommand");
 
         List<ServiceMasterBean> servicesList = new ServiceMasterDAO().findServicesAndMasterSortByName();
@@ -70,6 +70,6 @@ public class MainPageCommand extends Command {
         request.setAttribute("servicesName",services);
         request.setAttribute("services", servicesList);
 
-        return Path.MAIN_PAGE_PATH;
+        request.getRequestDispatcher(Path.MAIN_PAGE_PATH).forward(request,response);
     }
 }

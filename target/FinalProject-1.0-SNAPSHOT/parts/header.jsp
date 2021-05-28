@@ -32,11 +32,11 @@
                 </form>
                 <form>
                     <input type="hidden" name="command" value="performedServices">
-                    <button type="submit" class="btn btn-outline-success ms-2 me-2">Performed services</button>
+                    <button type="submit" class="btn btn-outline-success ms-2 me-2"><fmt:message key="header.performed_services"/></button>
                 </form>
                 <form>
                     <input type="hidden" name="command" value="confirmedServices">
-                    <button type="submit" class="btn btn-outline-success ms-2 me-2">Confirmed records</button>
+                    <button type="submit" class="btn btn-outline-success ms-2 me-2"><fmt:message key="header.confirmed_records"/></button>
                 </form>
             </c:if>
 

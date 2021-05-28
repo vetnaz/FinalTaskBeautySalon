@@ -18,7 +18,7 @@ public class CreateRecordCommand extends Command {
     Logger log = Logger.getLogger(CreateRecordCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start CreateRecordCommand");
 
         String chosenProcedure = request.getParameter("chosenProcedure");
@@ -40,15 +40,13 @@ public class CreateRecordCommand extends Command {
             try {
                 RecordService.recordCreation(chosenProcedure, chosenMaster, date, timeslot, user);
             } catch (AlreadyExistRecordExceptionService alreadyExistRecordExceptionService) {
-                request.setAttribute("createRecordMessage","taken");
-                return Path.REDIRECT_CREATE_RECORD_PAGE_COMMAND;
+                response.sendRedirect(request.getContextPath()+Path.REDIRECT_CREATE_RECORD_PAGE_COMMAND+"&createRecordMessage=taken");
+                return;
             }
 
-            request.setAttribute("createRecordMessage","successful");
-            return Path.REDIRECT_CREATE_RECORD_PAGE_COMMAND;
+            response.sendRedirect(request.getContextPath()+Path.REDIRECT_CREATE_RECORD_PAGE_COMMAND+"&createRecordMessage=successful");
         }else {
-            request.setAttribute("createRecordMessage","incorrect");
-            return Path.REDIRECT_CREATE_RECORD_PAGE_COMMAND;
+            response.sendRedirect(request.getContextPath()+Path.REDIRECT_CREATE_RECORD_PAGE_COMMAND+"&createRecordMessage=incorrect");
         }
     }
 

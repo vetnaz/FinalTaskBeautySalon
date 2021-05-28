@@ -71,13 +71,13 @@
                 </div>
             </div>
 
-            <c:if test="${createRecordMessage eq 'taken'}">
+            <c:if test="${pageContext.request.getParameter(\"createRecordMessage\") eq 'taken'}">
                 <p class="text-center text-warning">This timeslot no longer available! Please choose another timeslot!</p>
             </c:if>
-            <c:if test="${createRecordMessage eq 'successful'}">
+            <c:if test="${pageContext.request.getParameter(\"createRecordMessage\") eq 'successful'}">
                 <p class="text-center text-success">Record has created!</p>
             </c:if>
-            <c:if test="${createRecordMessage eq 'incorrect'}">
+            <c:if test="${pageContext.request.getParameter(\"createRecordMessage\") eq 'incorrect'}">
                 <p class="text-center text-danger">Incorrect data, please pay attention we don`t work at the weekend!</p>
             </c:if>
 

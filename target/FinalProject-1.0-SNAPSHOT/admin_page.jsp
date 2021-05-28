@@ -29,7 +29,7 @@
 
 
     <div class="d-flex justify-content-center m-4">
-        <H3 class="fw-normal">Admin panel</H3>
+        <H3 class="fw-normal"><fmt:message key="admin.admin_panel"/></H3>
     </div>
 
     <table class="table">
@@ -84,7 +84,7 @@
                         <form method="post" action="${pageContext.request.contextPath}/controller">
                             <input type="hidden" name="command" value="updateRecords">
                             <input type="hidden" name="orderConfirmed" value="${record.recordId}">
-                            <button class="btn btn-success btn-sm" type="submit">Confirm</button>
+                            <button class="btn btn-success btn-sm" type="submit"><fmt:message key="admin.confirm"/></button>
                         </form>
                     </td>
                 </c:if>

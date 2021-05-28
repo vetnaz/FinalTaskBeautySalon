@@ -14,7 +14,7 @@ public class ChangeTimeslotCommand extends Command {
     Logger log = Logger.getLogger(ChangeTimeslotCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start ChangeTimeslotCommand");
 
         int recordId = Integer.parseInt(request.getParameter("recordId"));
@@ -23,6 +23,6 @@ public class ChangeTimeslotCommand extends Command {
         log.trace("New timeslot :"+timeslot);
         new ServiceRecordDAO().updateTimeslotById(recordId,timeslot);
 
-        return Path.REDIRECT_ADMIN_PAGE_COMMAND;
+        response.sendRedirect(request.getContextPath()+Path.REDIRECT_ADMIN_PAGE_COMMAND);
     }
 }

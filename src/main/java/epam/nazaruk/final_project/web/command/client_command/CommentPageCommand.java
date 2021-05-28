@@ -15,12 +15,12 @@ public class CommentPageCommand extends Command {
     Logger log = Logger.getLogger(CommentPageCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int recordId = Integer.parseInt(request.getParameter("recordId"));
 
         MasterRecordsBean masterRecordsBean = new MasterRecordsDAO().selectRecordById(recordId);
         request.setAttribute("record",masterRecordsBean);
 
-        return Path.COMMENT_PAGE_PATH;
+        request.getRequestDispatcher(Path.COMMENT_PAGE_PATH).forward(request,response);
     }
 }

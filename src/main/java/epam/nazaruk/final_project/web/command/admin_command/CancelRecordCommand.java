@@ -14,12 +14,12 @@ public class CancelRecordCommand extends Command {
     Logger log = Logger.getLogger(CancelRecordCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start CancelRecordCommand");
 
         int id = Integer.parseInt(request.getParameter("cancelId"));
         new ServiceRecordDAO().deleteRecordById(id);
 
-        return Path.REDIRECT_ADMIN_PAGE_COMMAND;
+        response.sendRedirect(request.getContextPath()+Path.REDIRECT_ADMIN_PAGE_COMMAND);
     }
 }

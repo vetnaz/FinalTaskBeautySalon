@@ -1,7 +1,6 @@
 package epam.nazaruk.final_project.web.command.client_command;
 
 import epam.nazaruk.final_project.db.dao.FeedbackDAO;
-import epam.nazaruk.final_project.db.dao.MasterRecordsDAO;
 import epam.nazaruk.final_project.db.entity.Feedback;
 import epam.nazaruk.final_project.web.Path;
 import epam.nazaruk.final_project.web.command.Command;
@@ -17,9 +16,7 @@ public class SaveFeedbackCommand extends Command {
     Logger log = Logger.getLogger(SaveFeedbackCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String comment = request.getParameter("comment");
         int recordId = Integer.parseInt(request.getParameter("recordId"));
 
@@ -31,7 +28,6 @@ public class SaveFeedbackCommand extends Command {
         FeedbackDAO feedbackDAO = new FeedbackDAO();
         feedbackDAO.insertIntoFeedback(feedback);
 
-        request.setAttribute("commentMessage","succeed");
-        return Path.PERFORMED_SERVICES_PATH;
+        response.sendRedirect(request.getContextPath()+Path.REDIRECT_PERFORMED_SERVICES_PATH+"&commentMessage=succeed");
     }
 }

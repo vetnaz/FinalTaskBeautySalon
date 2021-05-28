@@ -28,42 +28,42 @@
 <jsp:include page="parts/header.jsp"/>
 
     <div class="container">
-        <h3 class="text-center fw-normal">Registration</h3>
+        <h3 class="text-center fw-normal"><fmt:message key="registration.registration"/></h3>
         <form class="row g-3" method="post" action="${pageContext.request.contextPath}/controller">
             <div class="col-md-6">
-                <label for="inputName" class="form-label">Name</label>
+                <label for="inputName" class="form-label"><fmt:message key="registration.name"/></label>
                 <input name="name" type="text" class="form-control" id="inputName" pattern="^[^\s$/()]+$" maxlength="25" minlength="3" title="Use any symbols besides $/() and space. Length must be from 3 to 25 symbols." required>
             </div>
             <div class="col-md-6">
-                <label for="inputSurname" class="form-label">Surname</label>
+                <label for="inputSurname" class="form-label"><fmt:message key="registration.surname"/></label>
                 <input name="surname" type="text" class="form-control" id="inputSurname" pattern="^[^\s$/()]+$" maxlength="25" minlength="3" title="Use any symbols besides $/() and space. Length must be from 3 to 25 symbols." required>
             </div>
             <div class="col-md-6">
-                <label for="inputLogin" class="form-label" >Login</label>
+                <label for="inputLogin" class="form-label" ><fmt:message key="registration.login"/></label>
                 <input name="login" type="text" class="form-control" id="inputLogin" pattern="^[0-9a-zA-Z-+_]{3,25}$" maxlength="25" minlength="3" title="You can use latin symbols, figures,and -+_ . Length must be from 3 to 25 symbols." required>
             </div>
             <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
+                <label for="inputPassword4" class="form-label"><fmt:message key="registration.password"/></label>
                 <input name="password" type="password" class="form-control" id="inputPassword4" pattern="^[a-z0-9_-]{6,18}$" maxlength="18" minlength="6" title="You can use lowercase latin symbols, figures,and -_ . Length must be from 6 to 18 symbols." required>
             </div>
             <div class="col-12">
-                <label for="inputEmail" class="form-label">Email</label>
+                <label for="inputEmail" class="form-label"><fmt:message key="registration.email"/></label>
                 <input name="email" type="email" class="form-control" id="inputEmail" placeholder="email@email.com" pattern="^[^\s]+@[^\s]+\.[^\s]+$" maxlength="30" minlength="3" title="Use any symbols besides space. Length must be from 3 to 30 symbols." required>
             </div>
-            <c:if test="${registration_message eq 'user_exist'}">
-                <p class="text-center text-danger">User already exist, please change login!</p>
+            <c:if test="${pageContext.request.getParameter(\"registration_message\") eq 'user_exist'}">
+                <p class="text-center text-danger"><fmt:message key="registration.user_exist"/></p>
             </c:if>
-            <c:if test="${registration_message eq 'have_problem'}">
-                <p class="text-center text-danger">Sorry, but we have a problem, please try again later.</p>
+            <c:if test="${pageContext.request.getParameter(\"registration_message\") eq 'have_problem'}">
+                <p class="text-center text-danger"><fmt:message key="registration.try_later"/></p>
             </c:if>
-            <c:if test="${registration_message eq 'incorrect_data'}">
-                <p class="text-center text-danger">Incorrect data, please try again!</p>
+            <c:if test="${pageContext.request.getParameter(\"registration_message\") eq 'incorrect_data'}">
+                <p class="text-center text-danger"><fmt:message key="registration.incorrect_data"/></p>
             </c:if>
 
 
             <div class="col-12">
                 <input type="hidden" name="command" value="saveUser">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary"><fmt:message key="registration.save"/></button>
             </div>
         </form>
     </div>

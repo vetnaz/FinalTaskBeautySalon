@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ServiceDoneCommand extends Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String serviceDoneId = request.getParameter("orderDone");
 
         new ServiceRecordDAO().updateStatusOfRecords(Integer.parseInt(serviceDoneId), Status.DONE.ordinal()+1);
@@ -39,6 +39,6 @@ public class ServiceDoneCommand extends Command {
         },1, TimeUnit.DAYS);
 
 
-        return Path.REDIRECT_MASTER_PAGE_COMMAND;
+        response.sendRedirect(request.getContextPath()+Path.REDIRECT_MASTER_PAGE_COMMAND);
     }
 }

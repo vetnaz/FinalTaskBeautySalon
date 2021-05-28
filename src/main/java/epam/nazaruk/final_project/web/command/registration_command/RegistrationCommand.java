@@ -13,9 +13,9 @@ public class RegistrationCommand extends Command {
     Logger logger = Logger.getLogger(RegistrationCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         logger.trace("Start RegistrationCommand");
 
-        return Path.REGISTRATION_PAGE_PATH;
+        request.getRequestDispatcher(Path.REGISTRATION_PAGE_PATH).forward(request,response);
     }
 }

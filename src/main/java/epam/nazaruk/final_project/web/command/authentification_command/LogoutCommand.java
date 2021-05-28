@@ -14,7 +14,7 @@ public class LogoutCommand extends Command {
     private static final Logger log = Logger.getLogger(LogoutCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         String locale = null;
         try {
@@ -30,7 +30,7 @@ public class LogoutCommand extends Command {
         if (locale!=null){
             request.getSession().setAttribute("locale",locale);
         }
-        
-        return Path.REDIRECT_MAIN_PAGE_COMMAND;
+
+        response.sendRedirect(request.getContextPath()+Path.REDIRECT_MAIN_PAGE_COMMAND);
     }
 }

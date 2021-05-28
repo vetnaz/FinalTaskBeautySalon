@@ -37,10 +37,7 @@ public class MainController extends HttpServlet {
         log.trace("Command :"+req.getParameter("command"));
         Command command = CommandContainer.get(req.getParameter("command"));
 
-        String forward = command.execute(req,resp);
-        log.trace("Forward :" + forward);
-
-        req.getRequestDispatcher(forward).forward(req,resp);
+        command.execute(req,resp);
 
         String reqQuery =  req.getQueryString();
         if (reqQuery!=null){

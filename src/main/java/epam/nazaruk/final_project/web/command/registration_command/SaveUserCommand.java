@@ -18,7 +18,7 @@ public class SaveUserCommand extends Command {
     Logger log = Logger.getLogger(SaveUserCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start SaveUserCommand");
 
         User user = new User();
@@ -32,17 +32,16 @@ public class SaveUserCommand extends Command {
             try {
                 AuthorizationsService.createUser(user);
             }catch (AlreadyExistRecordExceptionService e){
-                request.setAttribute("registration_message","user_exist");
-                return Path.REGISTRATION_PAGE_PATH;
+                response.sendRedirect(request.getContextPath()+Path.REDIRECT_REGISTRATION_PAGE_PATH+"&registration_message=user_exist");
+                return;
             } catch (ServiceException e) {
-                request.setAttribute("registration_message","have_problem");
-                return Path.REGISTRATION_PAGE_PATH;
+                response.sendRedirect(request.getContextPath()+Path.REDIRECT_REGISTRATION_PAGE_PATH+"&registration_message=have_problem");
+                return;
             }
 
-            return Path.LOGIN_PAGE_PATH;
+            response.sendRedirect(request.getContextPath()+Path.REDIRECT_LOGIN_PAGE_PATH);
         }else{
-            request.setAttribute("registration_message","incorrect_data");
-            return Path.REGISTRATION_PAGE_PATH;
+            response.sendRedirect(request.getContextPath()+Path.REDIRECT_REGISTRATION_PAGE_PATH+"&registration_message=incorrect_data");
         }
     }
 }

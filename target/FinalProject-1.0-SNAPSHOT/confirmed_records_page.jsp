@@ -27,19 +27,19 @@
 <div class="container">
 
   <div class="d-flex justify-content-center m-4">
-    <H3 class="fw-normal">Confirmed records</H3>
+    <H3 class="fw-normal"><fmt:message key="confirmed_records.confirmed_records"/></H3>
   </div>
 
   <c:if test="${not empty confirmedRecords}">
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">Service</th>
-        <th scope="col">Master</th>
-        <th scope="col">Date</th>
-        <th scope="col">Price</th>
-        <th scope="col">Status</th>
-        <th scope="col">Timeslot</th>
+        <th scope="col"><fmt:message key="confirmed_records.service"/></th>
+        <th scope="col"><fmt:message key="confirmed_records.master"/></th>
+        <th scope="col"><fmt:message key="confirmed_records.date"/></th>
+        <th scope="col"><fmt:message key="confirmed_records.price"/></th>
+        <th scope="col"><fmt:message key="confirmed_records.status"/></th>
+        <th scope="col"><fmt:message key="confirmed_records.timeslot"/></th>
       </tr>
       </thead>
       <tbody>
@@ -59,7 +59,7 @@
 
   <c:if test="${empty confirmedRecords}">
     <div class="d-flex justify-content-center m-4">
-      <H4 class="fw-normal">You don't have created records yet.</H4>
+      <H4 class="fw-normal"><fmt:message key="confirmed_records.no_records"/></H4>
     </div>
   </c:if>
 </div>

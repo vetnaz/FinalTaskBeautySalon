@@ -16,7 +16,7 @@ public class AdminPageCommand extends Command {
     Logger log = Logger.getLogger(AdminPageCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start AdminPageCommand");
 
         int recordPerPage = 10;
@@ -43,6 +43,6 @@ public class AdminPageCommand extends Command {
 
         request.setAttribute("allRecords",masterRecordsBeans);
 
-        return Path.ADMIN_PAGE_PATH;
+        request.getRequestDispatcher(Path.ADMIN_PAGE_PATH).forward(request,response);
     }
 }

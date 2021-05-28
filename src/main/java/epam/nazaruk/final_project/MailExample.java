@@ -6,10 +6,22 @@ import javax.mail.MessagingException;
 
 public class MailExample {
     public static void main(String[] args) {
-        try {
-            MailSender.sendEmail("tommynazaruk@gmail.com","Vitalii Nazaruk");
-        } catch (MessagingException e) {
-            e.printStackTrace();
+
+        Thread thread = new Thread(()->{
+            MailExample mailExample = new MailExample();
+            mailExample.hello();
+        });
+        thread.start();
+
+    }
+
+    void hello(){
+        synchronized (new Object()){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

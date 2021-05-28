@@ -22,7 +22,7 @@ public class MasterScheduleCommand  extends Command {
     Logger logger = Logger.getLogger(MasterScheduleCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         logger.trace("Start MasterScheduleCommand");
 
         HttpSession session = request.getSession();
@@ -38,10 +38,10 @@ public class MasterScheduleCommand  extends Command {
             day = day + " "+  dayOfWeek.getDisplayName(TextStyle.FULL, new Locale((String) session.getAttribute("locale"))).toUpperCase();
             schedule.put(day,masterRecordsDAO.findRecordsByMasterAndDay(user.getName(),user.getSurname(),day));
         }
-        logger.trace("Schedule: "+ schedule.toString());
+        logger.trace("Schedule: "+ schedule);
 
         request.setAttribute("schedule",schedule);
 
-        return Path.MASTER_PAGE_PATH;
+        request.getRequestDispatcher(Path.MASTER_PAGE_PATH).forward(request,response);
     }
 }

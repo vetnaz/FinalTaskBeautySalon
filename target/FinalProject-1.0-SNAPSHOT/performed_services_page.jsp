@@ -27,12 +27,12 @@
 <div class="container">
 
   <div class="d-flex justify-content-center m-4">
-    <H3 class="fw-normal">Performed services</H3>
+    <H3 class="fw-normal"><fmt:message key="performed_services.performed_services"/></H3>
   </div>
 
-  <c:if test="${not empty commentMessage}">
+  <c:if test="${pageContext.request.getParameter(\"commentMessage\")eq 'succeed'}">
     <div class="d-flex justify-content-center m-4">
-      <H6 class="fw-normal">Thanks, a lot for your feedback, we appreciate this!</H6>
+      <H6 class="fw-normal"><fmt:message key="performed_services.thanks"/></H6>
     </div>
   </c:if>
 
@@ -40,11 +40,11 @@
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">Service</th>
-        <th scope="col">Master</th>
-        <th scope="col">Date</th>
-        <th scope="col">Price</th>
-        <th scope="col">Your comment</th>
+        <th scope="col"><fmt:message key="performed_services.service"/></th>
+        <th scope="col"><fmt:message key="performed_services.master"/></th>
+        <th scope="col"><fmt:message key="performed_services.date"/></th>
+        <th scope="col"><fmt:message key="performed_services.price"/></th>
+        <th scope="col"><fmt:message key="performed_services.your_comment"/></th>
       </tr>
       </thead>
       <tbody>
@@ -59,7 +59,7 @@
               <form method="post" action="${pageContext.request.contextPath}/controller">
                 <input type="hidden" value="${record.recordId}" name="recordId">
                 <input type="hidden" value="commentPage" name="command">
-                <button class="btn btn-primary" type="submit">Leave a comment</button>
+                <button class="btn btn-primary" type="submit"><fmt:message key="performed_services.leave_comment"/></button>
               </form>
             </c:if>
             <c:if test="${not empty record.comment}">
@@ -74,7 +74,7 @@
 
   <c:if test="${empty performedRecords}">
     <div class="d-flex justify-content-center m-4">
-      <H4 class="fw-normal">You don't have services yet.</H4>
+      <H4 class="fw-normal"><fmt:message key="performed_services.no_services"/></H4>
     </div>
   </c:if>
 </div>

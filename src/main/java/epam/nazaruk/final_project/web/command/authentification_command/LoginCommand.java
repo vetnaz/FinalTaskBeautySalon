@@ -23,7 +23,7 @@ public class LoginCommand extends Command {
     private static final Logger log = Logger.getLogger(LoginCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         log.trace("LoginCommand start");
         HttpSession session = request.getSession();
@@ -40,24 +40,25 @@ public class LoginCommand extends Command {
                 user = AuthorizationsService.getUser(login,password);
             }catch (EntityNotFoundExceptionService e) {
                 log.trace("No such user");
-                request.setAttribute("valid_message","no_such_user");
-                return Path.LOGIN_PAGE_PATH;
+                response.sendRedirect(request.getContextPath()+Path.REDIRECT_LOGIN_PAGE_PATH+"&valid_message=no_such_user");
+                return;
             } catch (ServiceException e) {
                 log.trace("Wrong password");
-                request.setAttribute("valid_message","wrong_password");
-                return Path.LOGIN_PAGE_PATH;
+                response.sendRedirect(request.getContextPath()+Path.REDIRECT_LOGIN_PAGE_PATH+"&valid_message=wrong_password");
+                return;
             }
-
             Role userRole = Role.getRole(user);
             session.setAttribute("user", user);
             log.trace("Set attribute user");
             session.setAttribute("userRole", userRole);
             log.trace("Set attribute userRole");
 
-            return Path.REDIRECT_MAIN_PAGE_COMMAND;
+            response.sendRedirect(request.getContextPath()+Path.REDIRECT_MAIN_PAGE_COMMAND);
+            return;
         }
 
-        return Path.LOGIN_PAGE_PATH;
+
+        request.getRequestDispatcher(Path.LOGIN_PAGE_PATH).forward(request,response);
     }
 
 }

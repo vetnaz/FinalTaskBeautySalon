@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ConfirmedRecordsPageCommand extends Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<MasterRecordsBean> masterRecordsBeanList;
 
         HttpSession httpSession = request.getSession();
@@ -27,6 +27,6 @@ public class ConfirmedRecordsPageCommand extends Command {
 
         request.setAttribute("confirmedRecords",masterRecordsBeanList);
 
-        return Path.CONFIRMED_PAGE_PATH;
+        request.getRequestDispatcher(Path.CONFIRMED_PAGE_PATH).forward(request,response);
     }
 }

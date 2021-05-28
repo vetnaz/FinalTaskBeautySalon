@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PerformedServicesCommand  extends Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         HttpSession httpSession = request.getSession();
         User user = (User) httpSession.getAttribute("user");
@@ -25,6 +25,6 @@ public class PerformedServicesCommand  extends Command {
         List<MasterRecordsBean> masterRecordsBeanList = new MasterRecordsDAO().selectRecordsByUser(userId, Status.PAID.ordinal()+1);
         request.setAttribute("performedRecords",masterRecordsBeanList);
 
-        return Path.PERFORMED_SERVICES_PATH;
+        request.getRequestDispatcher(Path.PERFORMED_SERVICES_PATH).forward(request,response);
     }
 }

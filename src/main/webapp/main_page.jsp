@@ -37,7 +37,7 @@
         <H3 class="fw-normal"><fmt:message key="main.catalog"/></H3>
     </div>
 
-    <form method="post" action="${pageContext.request.contextPath}/controller">
+    <form method="post">
         <div class="row">
             <div class="col">
                 <h5 class="fw-normal m-2"><fmt:message key="main.sort_by"/></h5>

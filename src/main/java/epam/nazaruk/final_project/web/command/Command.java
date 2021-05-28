@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public  abstract class Command {
-    public abstract String execute(HttpServletRequest request, HttpServletResponse response)
+    public abstract void execute(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException;
 
     @Override

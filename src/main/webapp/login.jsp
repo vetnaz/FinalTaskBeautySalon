@@ -30,15 +30,15 @@
                 <div class="m-2">
                     <input type="password" class="form-control m-2" pattern="^[a-z0-9_-]{6,18}$" name="password" placeholder="<fmt:message key="login.password"/>" title="You can use lowercase latin symbols, figures,and -_ .Length must be from 6 to 18 symbols." required>
                 </div>
-                <c:if test="${valid_message eq 'no_such_user'}">
-                    <p class="text-center text-danger">No such user!</p>
+                <c:if test="${pageContext.request.getParameter(\"valid_message\") eq 'no_such_user'}">
+                    <p class="text-center text-danger"><fmt:message key="login.no_such_user"/></p>
                 </c:if>
-                <c:if test="${valid_message eq 'wrong_password'}">
-                    <p class="text-center text-danger">Wrong password!</p>
+                <c:if test="${pageContext.request.getParameter(\"valid_message\") eq 'wrong_password'}">
+                    <p class="text-center text-danger"><fmt:message key="login.wrong_password"/></p>
                 </c:if>
                 <div class="text-center m-3">
                     <button type="submit" class="btn btn-primary m-3"><fmt:message key="login.sign_in"/></button>
-                    <a class="btn btn-primary m-3" href="${pageContext.request.contextPath}/controller?command=registration">Registration</a>
+                    <a class="btn btn-primary m-3" href="${pageContext.request.contextPath}/controller?command=registration"><fmt:message key="login.registration"/></a>
                     <p class="mt-2 mb-3 text-muted">© 2021</p>
                 </div>
             </form>

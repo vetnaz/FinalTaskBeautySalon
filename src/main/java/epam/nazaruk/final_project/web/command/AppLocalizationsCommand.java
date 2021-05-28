@@ -12,7 +12,7 @@ public class AppLocalizationsCommand  extends Command{
     Logger log = Logger.getLogger(AppLocalizationsCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.trace("Start AppLocalizationsCommand");
 
         HttpSession session = request.getSession();
@@ -22,6 +22,6 @@ public class AppLocalizationsCommand  extends Command{
 
         session.setAttribute("locale",locale);
 
-        return session.getAttribute("previous_request").toString();
+        response.sendRedirect(request.getContextPath()+session.getAttribute("previous_request").toString());
     }
 }

@@ -21,6 +21,15 @@
         <servlet-name>CustomController</servlet-name>
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ExceptionHandler</servlet-name>
+        <servlet-class>epam.nazaruk.final_project.web.ExceptionHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExceptionHandler</servlet-name>
+        <url-pattern>/exception</url-pattern>
+    </servlet-mapping>
 
     <listener>
         <listener-class>epam.nazaruk.final_project.web.listener.ContextListener</listener-class>
@@ -43,4 +52,20 @@
         <filter-name>AccessFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/exception</location>
+    </error-page>
+
 </web-app>
